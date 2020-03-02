@@ -1,0 +1,35 @@
+{
+  "name": "slack-workflow-action",
+  "version": "1.0.0",
+  "description": "A GitHub action for sending a release notification to a Slack Workflow",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "package": "ncc build index.js -o dist",
+    "test": "eslint index.js && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiroUK/slack-workflow-action.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "Slack"
+  ],
+  "author": "Jiro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JiroUK/slack-workflow-action/issues"
+  },
+  "homepage": "https://github.com/JiroUK/slack-workflow-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.5",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0"
+  }
+}

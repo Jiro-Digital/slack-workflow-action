@@ -1,0 +1,18 @@
+name: 'Slack Workflow Notifier'
+description: 'Send a release notification to a Slack Workflow'
+inputs:
+  webhookUrl:
+    description: 'Slack Workflow webhook URL',
+    required: true
+  environment:
+    description: 'Name of environment used in release message'
+    default: 'production'
+  path:
+    description: 'Path of package.json'
+    default: './'
+outputs:
+  status:
+    description: 'The status text received from Slack'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
