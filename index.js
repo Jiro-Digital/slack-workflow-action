@@ -7,7 +7,7 @@ async function run() {
   try {
     const path = core.getInput('path');
     const environment = core.getInput('environment');
-    const webhookUrl = core.getInput('webhookUrl');
+    const webhookUrl = core.getInput('webhook_url');
 
     const pJson = fs.readFileSync(join(path, 'package.json'));
     const { name, version } = JSON.parse(pJson);

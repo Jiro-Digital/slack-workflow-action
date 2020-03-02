@@ -1,7 +1,7 @@
 name: 'Slack Workflow Notifier'
 description: 'Send a release notification to a Slack Workflow'
 inputs:
-  webhookUrl:
+  webhook_url:
     description: 'Slack Workflow webhook URL'
     required: true
   environment:
