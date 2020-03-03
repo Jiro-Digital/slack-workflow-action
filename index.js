@@ -1,7 +1,5 @@
 const core = require('@actions/core');
-const axios = require('axios');
-const fs = require('fs');
-const { join } = require('path');
+const { notify, readPjson } = require('./notify');
 
 async function run() {
   try {
@@ -9,12 +7,9 @@ async function run() {
     const environment = core.getInput('environment');
     const webhookUrl = core.getInput('webhook_url');
 
-    const pJson = fs.readFileSync(join(path, 'package.json'));
-    const { name, version } = JSON.parse(pJson);
+    const { name, version } = readPjson(path);
 
-    const { statusText } = await axios.post(webhookUrl, {
-      message: `${name} v${version} deployed to ${environment}`
-    });
+    const statusText = await notify(webhookUrl, name, version, environment);
 
     core.setOutput('status', statusText);
   }

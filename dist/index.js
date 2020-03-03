@@ -456,22 +456,17 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const axios = __webpack_require__(53);
-const fs = __webpack_require__(747);
-const { join } = __webpack_require__(622);
+const { notify, readPjson } = __webpack_require__(676);
 
 async function run() {
   try {
     const path = core.getInput('path');
     const environment = core.getInput('environment');
-    const webhookUrl = core.getInput('webhookUrl');
+    const webhookUrl = core.getInput('webhook_url');
 
-    const pJson = fs.readFileSync(join(path, 'package.json'));
-    const { name, version } = JSON.parse(pJson);
+    const { name, version } = readPjson(path);
 
-    const { statusText } = await axios.post(webhookUrl, {
-      message: `${name} v${version} deployed to ${environment}`
-    });
+    const statusText = await notify(webhookUrl, name, version, environment);
 
     core.setOutput('status', statusText);
   }
@@ -3002,6 +2997,29 @@ module.exports = function httpAdapter(config) {
   });
 };
 
+
+/***/ }),
+
+/***/ 676:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+const axios = __webpack_require__(53);
+const fs = __webpack_require__(747);
+const { join } = __webpack_require__(622);
+
+const notify = async (webhookUrl, name, version, environment) => {
+    const { statusText } = await axios.post(webhookUrl, {
+        message: `${name} v${version} deployed to ${environment}`
+    });
+    return statusText;
+};
+
+const readPjson = (path) => {
+    const pJson = fs.readFileSync(join(path, 'package.json'));
+    return JSON.parse(pJson);
+}
+
+module.exports = { notify, readPjson };
 
 /***/ }),
 
