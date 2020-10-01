@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Jiro-Digital/slack-workflow-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.5",
+    "@actions/core": "^1.2.6",
     "axios": "^0.20.0"
   },
   "devDependencies": {
