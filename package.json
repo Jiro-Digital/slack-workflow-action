@@ -1,6 +1,6 @@
 {
   "name": "slack-workflow-action",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A GitHub action for sending a release notification to a Slack Workflow",
   "main": "index.js",
   "scripts": {
